@@ -1,3 +1,4 @@
 .venv
 datasets/tempo
 datasets/trash
+src/__pycache__
