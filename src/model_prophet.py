@@ -1,5 +1,4 @@
 """ Import depndencies"""
-
 import pandas as pd
 from prophet import Prophet
 import pickle
@@ -9,10 +8,6 @@ from os.path import isfile, join
 
 
 """ Extract datasource """
-
-# print(listdir("./"))
-# listd = listdir("./datasets")
-
 sources = [f for f in listdir("./datasets") if isfile(join("./datasets", f))]
 
 array_dfs = []
@@ -22,7 +17,6 @@ for source in sources:
             array_dfs.append(pd.read_csv(f"./datasets/{source}", low_memory=False))
 
 """ Transform Dataframe """
-
 df = pd.concat(array_dfs, ignore_index=True, sort=False)
 
 df_filtered = df[['Date', 'Consommation']]
@@ -50,6 +44,6 @@ df_train_prophet = df_train_prophet.rename(columns={"Consommation": "y"})
 model_prophet = Prophet()
 model_prophet.fit(df_train_prophet)
 
-
-with open("models/prophet_model.pkl", "wb") as f:
+""" Save model """
+with open("./models/prophet_model.pkl", "wb") as f:
     pickle.dump(model_prophet, f)

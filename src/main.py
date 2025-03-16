@@ -1,11 +1,10 @@
 from fastapi import FastAPI
-import pandas as pd
 import pickle
 
 app = FastAPI()
 
 # Charger le modèle Prophet
-with open("models/prophet_model.pkl", "rb") as f:
+with open("./models/prophet_model.pkl", "rb") as f:
     model = pickle.load(f)
 
 @app.get("/predict/")
