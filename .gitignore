@@ -3,3 +3,4 @@ datasets/tempo
 datasets/trash
 src/__pycache__
 .~lock*
+MsprServerKeyPair.pem

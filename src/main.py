@@ -1,7 +1,9 @@
 from fastapi import FastAPI
+from prometheus_fastapi_instrumentator import Instrumentator
 import pickle
 
 app = FastAPI()
+Instrumentator().instrument(app).expose(app)
 
 # Charger le modèle Prophet
 with open("./models/prophet_model.pkl", "rb") as f:

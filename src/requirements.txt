@@ -27,6 +27,8 @@ numpy==2.2.3
 packaging==24.2
 pandas==2.2.3
 pillow==11.1.0
+prometheus-fastapi-instrumentator==7.1.0
+prometheus_client==0.21.1
 prophet==1.1.6
 pydantic==2.10.6
 pydantic_core==2.27.2
