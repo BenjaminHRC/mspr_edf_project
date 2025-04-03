@@ -4,11 +4,9 @@ services:
         ports:
             - 8080:8080
     prometheus:
-        image: prom/prometheus
+        build: ./prometheus
         ports:
             - '9090:9090'
-        volumes:
-            - ./prometheus:/etc/prometheus
         command:
             - '--config.file=/etc/prometheus/prometheus.yml'
     grafana:
