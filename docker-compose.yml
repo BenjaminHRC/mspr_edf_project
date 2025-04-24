@@ -2,7 +2,7 @@ services:
     app:
         build: ./src
         ports:
-            - 8080:8080
+            - 8081:8081
     prometheus:
         build: ./prometheus
         ports:
@@ -15,3 +15,10 @@ services:
             - '3000:3000'
         depends_on:
             - prometheus
+    db:
+        image: postgres
+        shm_size: 128mb
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_PASSWORD: ${DB_PASSWORD}

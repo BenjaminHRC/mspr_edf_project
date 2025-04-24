@@ -32,6 +32,10 @@ with open("./models/prophet_model.pkl", "rb") as f:
 df_test = get_test_data()
 df_test.rename(columns={"Date": "ds", "Consommation": "y"}, inplace=True)
 
+@app.get("/")
+def main():
+    return "hello worldss"
+
 @app.get("/predict/")
 def predict(days: int = 30):
     start_time = time.time()

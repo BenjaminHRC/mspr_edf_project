@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mspr-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mspr-app
+  template:
+    metadata:
+      labels:
+        app: mspr-app
+    spec:
+      containers:
+      - name: mspr-edf-project-app
+        image: mspr-edf-project-app:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mspr-app
+spec:
+  selector:
+    app: mspr-app
+  ports:
+    - port: 8081
+      targetPort: 8081
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mspr-app-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: app.mspr
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mspr-app
+            port:
+              number: 8081
+ 
